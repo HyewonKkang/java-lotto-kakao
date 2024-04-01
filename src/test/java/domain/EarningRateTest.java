@@ -1,0 +1,19 @@
+package domain;
+
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+public class EarningRateTest {
+	@Test
+	@DisplayName("총 수익률을 계산한다.")
+	void earningRateTest() {
+		LottoMoney spent = new LottoMoney(10500);
+		WinningAmount earned = new WinningAmount(WinningAmount.SAME_THREE);
+
+		EarningRate earningRate = new EarningRate(spent, earned);
+		double expected = (double)earned.getAmount() / spent.getSpentMoney();
+
+		Assertions.assertThat(earningRate.getEarningRate()).isEqualTo(expected);
+	}
+}

@@ -17,8 +17,7 @@ public class WinningLottoTest {
 
 		WinningAmount winningAmount = testWinningLotto.getResultAmount(testLotto);
 
-		assertThat(winningAmount.getAmount())
-			.isEqualTo(WinningAmount.SAME_THREE.getAmount());
+		assertThat(winningAmount.getAmount()).isEqualTo(WinningAmount.SAME_THREE);
 	}
 
 	@Test
@@ -30,8 +29,7 @@ public class WinningLottoTest {
 
 		WinningAmount winningAmount = testWinningLotto.getResultAmount(testLotto);
 
-		assertThat(winningAmount.getAmount())
-			.isEqualTo(WinningAmount.SAME_FOUR.getAmount());
+		assertThat(winningAmount.getAmount()).isEqualTo(WinningAmount.SAME_FOUR);
 	}
 
 	@Test
@@ -43,8 +41,7 @@ public class WinningLottoTest {
 
 		WinningAmount winningAmount = testWinningLotto.getResultAmount(testLotto);
 
-		assertThat(winningAmount.getAmount())
-			.isEqualTo(WinningAmount.SAME_FIVE.getAmount());
+		assertThat(winningAmount.getAmount()).isEqualTo(WinningAmount.SAME_FIVE);
 	}
 
 	@Test
@@ -56,8 +53,7 @@ public class WinningLottoTest {
 
 		WinningAmount winningAmount = testWinningLotto.getResultAmount(testLotto);
 
-		assertThat(winningAmount.getAmount())
-			.isEqualTo(WinningAmount.SAME_FIVE_WITH_BONUS.getAmount());
+		assertThat(winningAmount.getAmount()).isEqualTo(WinningAmount.SAME_FIVE_WITH_BONUS);
 	}
 
 	@Test
@@ -69,7 +65,6 @@ public class WinningLottoTest {
 
 		WinningAmount winningAmount = testWinningLotto.getResultAmount(testLotto);
 
-		assertThat(winningAmount.getAmount())
-			.isEqualTo(WinningAmount.SAME_SIX.getAmount());
+		assertThat(winningAmount.getAmount()).isEqualTo(WinningAmount.SAME_SIX);
 	}
 }

@@ -3,12 +3,12 @@ package domain;
 import java.util.Arrays;
 
 public enum Rank {
-	LOSE(0, WinningAmount.ZERO),
-	SAME_THREE(3, WinningAmount.SAME_THREE),
-	SAME_FOUR(4, WinningAmount.SAME_FOUR),
-	SAME_FIVE(5, WinningAmount.SAME_FIVE),
-	SAME_FIVE_WITH_BONUS(5, WinningAmount.SAME_FIVE_WITH_BONUS),
-	SAME_SIX(6, WinningAmount.SAME_SIX);
+	LOSE(0, new WinningAmount(WinningAmount.ZERO)),
+	SAME_THREE(3, new WinningAmount(WinningAmount.SAME_THREE)),
+	SAME_FOUR(4, new WinningAmount(WinningAmount.SAME_FOUR)),
+	SAME_FIVE(5, new WinningAmount(WinningAmount.SAME_FIVE)),
+	SAME_FIVE_WITH_BONUS(5, new WinningAmount(WinningAmount.SAME_FIVE_WITH_BONUS)),
+	SAME_SIX(6, new WinningAmount(WinningAmount.SAME_SIX));
 
 	private final int sameNumberCount;
 	private final WinningAmount winningAmount;
