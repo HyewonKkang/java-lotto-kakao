@@ -3,31 +3,31 @@ package domain;
 import java.util.Arrays;
 
 public enum Rank {
-	LOSE(0, new WinningAmount(WinningAmount.ZERO)),
-	SAME_THREE(3, new WinningAmount(WinningAmount.SAME_THREE)),
-	SAME_FOUR(4, new WinningAmount(WinningAmount.SAME_FOUR)),
-	SAME_FIVE(5, new WinningAmount(WinningAmount.SAME_FIVE)),
-	SAME_FIVE_WITH_BONUS(5, new WinningAmount(WinningAmount.SAME_FIVE_WITH_BONUS)),
-	SAME_SIX(6, new WinningAmount(WinningAmount.SAME_SIX));
+	LOSE(0, new WinningMoney(WinningMoney.ZERO)),
+	MATCH_THREE(3, new WinningMoney(WinningMoney.MATCH_THREE)),
+	MATCH_FOUR(4, new WinningMoney(WinningMoney.MATCH_FOUR)),
+	MATCH_FIVE(5, new WinningMoney(WinningMoney.MATCH_FIVE)),
+	MATCH_FIVE_WITH_BONUS(5, new WinningMoney(WinningMoney.MATCH_FIVE_WITH_BONUS)),
+	MATCH_SIX(6, new WinningMoney(WinningMoney.MATCH_SIX));
 
-	private final int sameNumberCount;
-	private final WinningAmount winningAmount;
+	private final int matchNumberCount;
+	private final WinningMoney winningMoney;
 
-	Rank(int sameNumberCount, WinningAmount winningAmount) {
-		this.sameNumberCount = sameNumberCount;
-		this.winningAmount = winningAmount;
+	Rank(int matchNumberCount, WinningMoney winningMoney) {
+		this.matchNumberCount = matchNumberCount;
+		this.winningMoney = winningMoney;
 	}
 
-	public WinningAmount getWinningAmount() {
-		return winningAmount;
+	public WinningMoney getWinningMoney() {
+		return winningMoney;
 	}
 
-	public static Rank findBySameNumberCount(int sameNumberCount) {
-		if (sameNumberCount == 5) {
+	public static Rank findByMatchNumberCount(int matchNumberCount) {
+		if (matchNumberCount == 5) {
 			throw new IllegalArgumentException("추가 정보가 필요합니다.");
 		}
 		return Arrays.stream(Rank.values())
-			.filter(rank -> rank.sameNumberCount == sameNumberCount)
+			.filter(rank -> rank.matchNumberCount == matchNumberCount)
 			.findFirst()
 			.orElse(Rank.LOSE);
 	}

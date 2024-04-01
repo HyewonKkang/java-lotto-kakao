@@ -15,9 +15,9 @@ public class WinningLottoTest {
 		Lotto winnigLotto = new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9));
 		WinningLotto testWinningLotto = new WinningLotto(winnigLotto, 10);
 
-		WinningAmount winningAmount = testWinningLotto.getResultAmount(testLotto);
+		WinningMoney winningMoney = testWinningLotto.getResultAmount(testLotto);
 
-		assertThat(winningAmount.getAmount()).isEqualTo(WinningAmount.SAME_THREE);
+		assertThat(winningMoney.getMoney()).isEqualTo(WinningMoney.MATCH_THREE);
 	}
 
 	@Test
@@ -27,9 +27,9 @@ public class WinningLottoTest {
 		Lotto winnigLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 8, 9));
 		WinningLotto testWinningLotto = new WinningLotto(winnigLotto, 10);
 
-		WinningAmount winningAmount = testWinningLotto.getResultAmount(testLotto);
+		WinningMoney winningMoney = testWinningLotto.getResultAmount(testLotto);
 
-		assertThat(winningAmount.getAmount()).isEqualTo(WinningAmount.SAME_FOUR);
+		assertThat(winningMoney.getMoney()).isEqualTo(WinningMoney.MATCH_FOUR);
 	}
 
 	@Test
@@ -39,9 +39,9 @@ public class WinningLottoTest {
 		Lotto winnigLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 9));
 		WinningLotto testWinningLotto = new WinningLotto(winnigLotto, 10);
 
-		WinningAmount winningAmount = testWinningLotto.getResultAmount(testLotto);
+		WinningMoney winningMoney = testWinningLotto.getResultAmount(testLotto);
 
-		assertThat(winningAmount.getAmount()).isEqualTo(WinningAmount.SAME_FIVE);
+		assertThat(winningMoney.getMoney()).isEqualTo(WinningMoney.MATCH_FIVE);
 	}
 
 	@Test
@@ -51,9 +51,9 @@ public class WinningLottoTest {
 		Lotto winnigLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 9));
 		WinningLotto testWinningLotto = new WinningLotto(winnigLotto, 6);
 
-		WinningAmount winningAmount = testWinningLotto.getResultAmount(testLotto);
+		WinningMoney winningMoney = testWinningLotto.getResultAmount(testLotto);
 
-		assertThat(winningAmount.getAmount()).isEqualTo(WinningAmount.SAME_FIVE_WITH_BONUS);
+		assertThat(winningMoney.getMoney()).isEqualTo(WinningMoney.MATCH_FIVE_WITH_BONUS);
 	}
 
 	@Test
@@ -63,8 +63,8 @@ public class WinningLottoTest {
 		Lotto winnigLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
 		WinningLotto testWinningLotto = new WinningLotto(winnigLotto, 10);
 
-		WinningAmount winningAmount = testWinningLotto.getResultAmount(testLotto);
+		WinningMoney winningMoney = testWinningLotto.getResultAmount(testLotto);
 
-		assertThat(winningAmount.getAmount()).isEqualTo(WinningAmount.SAME_SIX);
+		assertThat(winningMoney.getMoney()).isEqualTo(WinningMoney.MATCH_SIX);
 	}
 }

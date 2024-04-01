@@ -11,16 +11,16 @@ public class WinningLotto {
 		this.bonusNumber = bonusNumber;
 	}
 
-	public WinningAmount getResultAmount(Lotto lotto) {
-		int sameNumberCount = countSameNumber(lotto);
-		if (sameNumberCount != 5) {
-			Rank rank = Rank.findBySameNumberCount(sameNumberCount);
-			return rank.getWinningAmount();
+	public WinningMoney getResultAmount(Lotto lotto) {
+		int matchNumberCount = countSameNumber(lotto);
+		if (matchNumberCount != 5) {
+			Rank rank = Rank.findByMatchNumberCount(matchNumberCount);
+			return rank.getWinningMoney();
 		}
 		if (hasBonusNumber(lotto)) {
-			return Rank.SAME_FIVE_WITH_BONUS.getWinningAmount();
+			return Rank.MATCH_FIVE_WITH_BONUS.getWinningMoney();
 		}
-		return Rank.SAME_FIVE.getWinningAmount();
+		return Rank.MATCH_FIVE.getWinningMoney();
 	}
 
 	private int countSameNumber(Lotto lotto) {

@@ -9,10 +9,10 @@ public class EarningRateTest {
 	@DisplayName("총 수익률을 계산한다.")
 	void earningRateTest() {
 		LottoMoney spent = new LottoMoney(10500);
-		WinningAmount earned = new WinningAmount(WinningAmount.SAME_THREE);
+		WinningMoney earned = new WinningMoney(WinningMoney.MATCH_THREE);
 
 		EarningRate earningRate = new EarningRate(spent, earned);
-		double expected = (double)earned.getAmount() / spent.getSpentMoney();
+		double expected = (double)earned.getMoney() / spent.getSpentMoney();
 
 		Assertions.assertThat(earningRate.getEarningRate()).isEqualTo(expected);
 	}
