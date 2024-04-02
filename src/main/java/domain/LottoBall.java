@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -13,10 +12,10 @@ public class LottoBall implements Comparable<LottoBall> {
 		this.lottoBall = lottoBall;
 	}
 
-	public static List<LottoBall> of(int ...lottoBalls) {
-		return Arrays.stream(lottoBalls)
+	public static Lotto toLotto(int ...lottoBalls) {
+		return new Lotto(Arrays.stream(lottoBalls)
 			.mapToObj(LottoBall::new)
-			.collect(Collectors.toList());
+			.collect(Collectors.toList()));
 	}
 
 	private void validateLottoBall(int lottoBall) {

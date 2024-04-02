@@ -2,6 +2,8 @@ package domain;
 
 import java.util.List;
 
+import domain.Lotto;
+
 public class Lottos {
 	private final List<Lotto> lottos;
 

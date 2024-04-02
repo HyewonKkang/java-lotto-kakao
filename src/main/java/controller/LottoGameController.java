@@ -60,6 +60,9 @@ public class LottoGameController {
 		} catch (NumberFormatException e) {
 			System.out.println("[ERROR] \", \"로 구분되는 숫자를 입력해주세요!");
 			return getWinningLottoNumbers();
+		} catch (IllegalArgumentException e) {
+			System.out.println("[ERROR] " + e.getMessage());
+			return getWinningLottoNumbers();
 		}
 	}
 }
