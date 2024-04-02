@@ -58,7 +58,7 @@ public class LottoGameView {
 	}
 
 	public void printEarningRate(EarningRate earningRate) {
-		System.out.println("총 수익률은 " + earningRate.getEarningRate() + "입니다.");
+		System.out.printf("총 수익률은 %.2f입니다.\n", earningRate.getEarningRate());
 	}
 
 	private void printDescription(Rank rank, int winningCount) {

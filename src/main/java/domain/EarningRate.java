@@ -13,6 +13,9 @@ public class EarningRate {
 	}
 
 	private static double calculate(int spent, long earned) {
+		if (spent == 0) {
+			return 0;
+		}
 		return (double)earned / spent;
 	}
 

@@ -22,23 +22,44 @@ public class LottoGameController {
 	}
 
 	public void play() {
-		LottoMoney lottoMoney = new LottoMoney(lottoGameView.getLottoMoneyInput());
+		LottoMoney lottoMoney = getLottoMoney();
 		Lottos lottos = lottoGenerator.generateLottos(lottoMoney.calculateLottoCount());
 
 		lottoGameView.printPurchasedLottos(lottos);
-		WinningLotto winningLotto = getWinningLotto();
+		Lotto winningLottoNumbers = getWinningLottoNumbers();
+		WinningLotto winningLotto = getWinningLotto(winningLottoNumbers);
 		WinningResult winningResult = WinningResult.of(winningLotto, lottos);
 
 		lottoGameView.printWinningRank(winningResult);
 		lottoGameView.printEarningRate(EarningRate.of(lottoMoney, winningResult.getWinningMoney()));
 	}
 
-	private WinningLotto getWinningLotto() {
-		List<LottoBall> winningLottos = lottoGameView.getWinningLottoNumbers();
-		int bonusNumber = lottoGameView.getBonusNumber();
-
-		return new WinningLotto(new Lotto(winningLottos), new LottoBall(bonusNumber));
+	private LottoMoney getLottoMoney() {
+		try {
+			return new LottoMoney(lottoGameView.getLottoMoneyInput());
+		} catch (IllegalArgumentException e) {
+			System.out.println("[ERROR] " + e.getMessage());
+		}
+		return getLottoMoney();
 	}
 
+	private WinningLotto getWinningLotto(Lotto winningLottoNumbers) {
+		try {
+			LottoBall bonusNumber = new LottoBall(lottoGameView.getBonusNumber());
+			return new WinningLotto(winningLottoNumbers, bonusNumber);
+		} catch (IllegalArgumentException e) {
+			System.out.println("[ERROR] " + e.getMessage());
+			return getWinningLotto(winningLottoNumbers);
+		}
+	}
 
+	private Lotto getWinningLottoNumbers() {
+		try {
+			List<LottoBall> winningLottos = lottoGameView.getWinningLottoNumbers();
+			return new Lotto(winningLottos);
+		} catch (NumberFormatException e) {
+			System.out.println("[ERROR] \", \"로 구분되는 숫자를 입력해주세요!");
+			return getWinningLottoNumbers();
+		}
+	}
 }
