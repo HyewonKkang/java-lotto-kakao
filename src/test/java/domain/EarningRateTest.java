@@ -11,7 +11,7 @@ public class EarningRateTest {
 		LottoMoney spent = new LottoMoney(10500);
 		WinningMoney earned = new WinningMoney(WinningMoney.MATCH_THREE);
 
-		EarningRate earningRate = new EarningRate(spent, earned);
+		EarningRate earningRate = EarningRate.of(spent, earned);
 		double expected = (double)earned.getMoney() / spent.getSpentMoney();
 
 		Assertions.assertThat(earningRate.getEarningRate()).isEqualTo(expected);

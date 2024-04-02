@@ -12,15 +12,18 @@ public class WinningLotto {
 	}
 
 	public WinningMoney getResultAmount(Lotto lotto) {
+		return getRank(lotto).getWinningMoney();
+	}
+
+	public Rank getRank(Lotto lotto) {
 		int matchNumberCount = countSameNumber(lotto);
 		if (matchNumberCount != 5) {
-			Rank rank = Rank.findByMatchNumberCount(matchNumberCount);
-			return rank.getWinningMoney();
+			return Rank.findByMatchNumberCount(matchNumberCount);
 		}
 		if (hasBonusNumber(lotto)) {
-			return Rank.MATCH_FIVE_WITH_BONUS.getWinningMoney();
+			return Rank.MATCH_FIVE_WITH_BONUS;
 		}
-		return Rank.MATCH_FIVE.getWinningMoney();
+		return Rank.MATCH_FIVE;
 	}
 
 	private int countSameNumber(Lotto lotto) {

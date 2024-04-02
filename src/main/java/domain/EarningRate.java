@@ -3,12 +3,16 @@ package domain;
 public class EarningRate {
 	private final double earningRate;
 
-	public EarningRate(LottoMoney lottoMoney, WinningMoney winningMoney) {
-		this.earningRate = calculate(lottoMoney.getSpentMoney(),
-			winningMoney.getMoney());
+	private EarningRate(double earningRate) {
+		this.earningRate = earningRate;
 	}
 
-	private double calculate(int spent, long earned) {
+	public static EarningRate of(LottoMoney lottoMoney, WinningMoney winningMoney) {
+		return new EarningRate(calculate(lottoMoney.getSpentMoney(),
+			winningMoney.getMoney()));
+	}
+
+	private static double calculate(int spent, long earned) {
 		return (double)earned / spent;
 	}
 

@@ -9,6 +9,18 @@ import org.junit.jupiter.api.Test;
 
 public class WinningLottoTest {
 	@Test
+	@DisplayName("당첨 결과를 계산할 수 있다.")
+	void checkRank() {
+		Lotto testLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+		Lotto winnigLotto = new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9));
+		WinningLotto testWinningLotto = new WinningLotto(winnigLotto, 10);
+
+		Rank rank = testWinningLotto.getRank(testLotto);
+
+		assertThat(rank).isEqualTo(Rank.MATCH_THREE);
+	}
+
+	@Test
 	@DisplayName("숫자 3개가 일치하면 5,000원이다.")
 	void checkThree() {
 		Lotto testLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
