@@ -1,12 +1,11 @@
 package domain;
 
-import java.util.Arrays;
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.*;
 
 public class WinningResultTest {
 	@Test
@@ -41,15 +40,15 @@ public class WinningResultTest {
 
 	private WinningResult generateTestWinningResult() {
 		// 사용자가 구매한 로또
-		Lotto testLotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 4개 일치
-		Lotto testLotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 8, 9)); // 6개 일치
-		Lotto testLotto3 = new Lotto(Arrays.asList(1, 2, 3, 4, 8, 10)); // 5개 + 보너스 일치
-		Lotto testLotto4 = new Lotto(Arrays.asList(11, 12, 13, 14, 15, 16)); // 꽝
+		Lotto testLotto1 = new Lotto(LottoBall.of(1, 2, 3, 4, 5, 6)); // 4개 일치
+		Lotto testLotto2 = new Lotto(LottoBall.of(1, 2, 3, 4, 8, 9)); // 6개 일치
+		Lotto testLotto3 = new Lotto(LottoBall.of(1, 2, 3, 4, 8, 10)); // 5개 + 보너스 일치
+		Lotto testLotto4 = new Lotto(LottoBall.of(11, 12, 13, 14, 15, 16)); // 꽝
 		Lottos testLottos = new Lottos(List.of(testLotto1, testLotto2, testLotto3, testLotto4));
 
 		// 당첨 로또
-		Lotto winnigLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 8, 9));
-		WinningLotto testWinningLotto = new WinningLotto(winnigLotto, 10);
+		Lotto winnigLotto = new Lotto(LottoBall.of(1, 2, 3, 4, 8, 9));
+		WinningLotto testWinningLotto = new WinningLotto(winnigLotto, new LottoBall(10));
 
 		// 결과 게산
 		return WinningResult.of(testWinningLotto, testLottos);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import domain.EarningRate;
 import domain.Lotto;
+import domain.LottoBall;
 import domain.LottoGenerator;
 import domain.LottoMoney;
 import domain.Lottos;
@@ -33,10 +34,10 @@ public class LottoGameController {
 	}
 
 	private WinningLotto getWinningLotto() {
-		List<Integer> winningLottos = lottoGameView.getWinningLottoNumbers();
+		List<LottoBall> winningLottos = lottoGameView.getWinningLottoNumbers();
 		int bonusNumber = lottoGameView.getBonusNumber();
 
-		return new WinningLotto(new Lotto(winningLottos), bonusNumber);
+		return new WinningLotto(new Lotto(winningLottos), new LottoBall(bonusNumber));
 	}
 
 

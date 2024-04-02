@@ -8,9 +8,9 @@ public class Lotto {
 	public static final int LOTTO_UPPER_BOUND = 45;
 	public static final int LOTTO_LOWER_BOUND = 1;
 
-	private final List<Integer> lottoNumbers;
+	private final List<LottoBall> lottoNumbers;
 
-	public Lotto(List<Integer> lottoNumbers) {
+	public Lotto(List<LottoBall> lottoNumbers) {
 		if (lottoNumbers.size() != LOTTO_NUMBER_SIZE) {
 			throw new IllegalArgumentException("로또 번호는 6개로 이뤄져야 합니다!");
 		}
@@ -18,11 +18,11 @@ public class Lotto {
 		this.lottoNumbers = lottoNumbers;
 	}
 
-	public List<Integer> getLottoNumbers() {
+	public List<LottoBall> getLottoNumbers() {
 		return lottoNumbers;
 	}
 
-	public boolean contains(int lottoNumber) {
+	public boolean contains(LottoBall lottoNumber) {
 		return lottoNumbers.contains(lottoNumber);
 	}
 }

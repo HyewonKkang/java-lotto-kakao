@@ -4,9 +4,9 @@ import java.util.List;
 
 public class WinningLotto {
 	private final Lotto winnigLotto;
-	private final int bonusNumber;
+	private final LottoBall bonusNumber;
 
-	public WinningLotto(Lotto winnigLotto, int bonusNumber) {
+	public WinningLotto(Lotto winnigLotto, LottoBall bonusNumber) {
 		this.winnigLotto = winnigLotto;
 		this.bonusNumber = bonusNumber;
 	}
@@ -27,7 +27,7 @@ public class WinningLotto {
 	}
 
 	private int countSameNumber(Lotto lotto) {
-		List<Integer> targetLottoNumbers = lotto.getLottoNumbers();
+		List<LottoBall> targetLottoNumbers = lotto.getLottoNumbers();
 		return (int) targetLottoNumbers.stream().filter(winnigLotto::contains).count();
 	}
 
