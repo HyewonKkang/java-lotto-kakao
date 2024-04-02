@@ -14,9 +14,9 @@ public class LottoGeneratorTest {
 	@DisplayName("로또생성기는 1부터 45까지, 6개의 서로다른 숫자로 이뤄진 로또 번호를 생성한다.")
 	void lottoNumberTest() {
 		LottoGenerator generator = new RandomLottoGenerator();
-		Lotto generated = generator.generateLotto();
+		Lottos generated = generator.generateLottos(1);
 
-		List<Integer> lottoNumbers = generated.getLottoNumbers();
+		List<Integer> lottoNumbers = generated.getLottos().get(0).getLottoNumbers();
 		lottoNumbers.forEach(number -> {
 			assertThat(number).isBetween(Lotto.LOTTO_LOWER_BOUND, Lotto.LOTTO_UPPER_BOUND);
 		});

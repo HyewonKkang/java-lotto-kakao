@@ -1,5 +1,5 @@
 package domain;
 
 public interface LottoGenerator {
-	Lotto generateLotto();
+	Lottos generateLottos(int lottoCount);
 }

@@ -17,7 +17,7 @@ public class LottoGameView {
 
 	public int getLottoMoneyInput() {
 		System.out.println("구입금액을 입력해 주세요.");
-		return sc.nextInt();
+		return Integer.parseInt(sc.nextLine());
 	}
 
 	public List<Integer> getWinningLottoNumbers() {
@@ -40,7 +40,7 @@ public class LottoGameView {
 			+ "]");
 	}
 
-	public void printPurchasedCount(Lottos lottos) {
+	public void printPurchasedLottos(Lottos lottos) {
 		System.out.println(lottos.getLottoCount() + "개를 구매했습니다.");
 		lottos.getLottos().forEach(this::printLotto);
 		System.out.println();
@@ -51,30 +51,28 @@ public class LottoGameView {
 		System.out.println("---------");
 
 		Arrays.stream(Rank.values())
-			.map(rank -> getDescription(rank) + "- " + winningResult.getWinningCount(rank) + "개")
-			.forEach(System.out::println);
+			.forEach(rank -> printDescription(rank, winningResult.getWinningCount(rank)));
 	}
 
 	public void printEarningRate(EarningRate earningRate) {
 		System.out.println("총 수익률은 " + earningRate.getEarningRate() + "입니다.");
 	}
 
-	private String getDescription(Rank rank) {
+	private void printDescription(Rank rank, int winningCount) {
 		if (rank.equals(Rank.MATCH_THREE)) {
-			return "3개 일치 (5000원)";
+			System.out.println("3개 일치 (5000원)- " + winningCount + "개");
 		}
 		if (rank.equals(Rank.MATCH_FOUR)) {
-			return "4개 일치 (50000원)";
+			System.out.println("4개 일치 (50000원)- " + winningCount + "개");
 		}
 		if (rank.equals(Rank.MATCH_FIVE)) {
-			return "5개 일치 (1500000원)";
+			System.out.println("5개 일치 (1500000원)- " + winningCount + "개");
 		}
 		if (rank.equals(Rank.MATCH_FIVE_WITH_BONUS)) {
-			return "5개 일치, 보너스 볼 일치(30000000원)";
+			System.out.println("5개 일치, 보너스 볼 일치(30000000원)- " + winningCount + "개");
 		}
 		if (rank.equals(Rank.MATCH_SIX)) {
-			return "6개 일치 (2000000000원)";
+			System.out.println("6개 일치 (2000000000원)- " + winningCount + "개");
 		}
-		throw new IllegalArgumentException("당첨되지 않았습니다.");
 	}
 }
