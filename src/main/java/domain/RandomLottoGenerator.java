@@ -1,10 +1,10 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class RandomLottoGenerator implements LottoGenerator {
     private static final List<Integer> numbers =
@@ -13,11 +13,9 @@ public class RandomLottoGenerator implements LottoGenerator {
 
     @Override
     public Lottos generateLottos(int lottoCount) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            lottos.add(generateLotto());
-        }
-        return new Lottos(lottos);
+        return Stream.generate(this::generateLotto)
+            .limit(lottoCount)
+            .collect(Collectors.collectingAndThen(Collectors.toList(), Lottos::new));
     }
 
     private Lotto generateLotto() {
