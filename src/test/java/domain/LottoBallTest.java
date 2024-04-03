@@ -1,25 +1,25 @@
 package domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
-
 public class LottoBallTest {
-	@Test
+	@ParameterizedTest
+	@ValueSource(ints = {1, 10, 45})
 	@DisplayName("로또 번호 생성에 성공한다.")
-	void validLottoNumberBoundaryTest() {
-		assertThatCode(() -> new LottoBall(1))
+	void validLottoNumberBoundaryTest(int number) {
+		assertThatCode(() -> new LottoBall(number))
 			.doesNotThrowAnyException();
 	}
 
-	@Test
+	@ParameterizedTest
+	@ValueSource(ints = {0, 46})
 	@DisplayName("로또 번호는 1에서 45 사이의 정수여야 한다.")
-	void invalidLottoNumberBoundaryTest() {
-		assertThatThrownBy(() -> new LottoBall(46))
-			.isInstanceOf(IllegalArgumentException.class);
-		assertThatThrownBy(() -> new LottoBall(0))
+	void invalidLottoNumberBoundaryTest(int number) {
+		assertThatThrownBy(() -> new LottoBall(number))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 }
