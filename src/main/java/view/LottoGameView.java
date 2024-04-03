@@ -25,7 +25,7 @@ public class LottoGameView {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         return Arrays.stream(sc.nextLine().split(LOTTO_SEPARATOR))
             .map(Integer::parseInt)
-            .map(LottoBall::new)
+            .map(LottoBall::valueOf)
             .collect(Collectors.toList());
     }
 

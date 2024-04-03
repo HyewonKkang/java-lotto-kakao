@@ -21,7 +21,7 @@ public class RandomLottoGenerator implements LottoGenerator {
     private Lotto generateLotto() {
         Collections.shuffle(numbers);
         List<LottoBall> lottoBalls = numbers.subList(0, Lotto.LOTTO_NUMBER_SIZE)
-            .stream().map(LottoBall::new).collect(Collectors.toList());
+            .stream().map(LottoBall::valueOf).collect(Collectors.toList());
         return new Lotto(lottoBalls);
     }
 }
