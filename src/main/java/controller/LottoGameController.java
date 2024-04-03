@@ -39,8 +39,8 @@ public class LottoGameController {
             return new LottoMoney(lottoGameView.getLottoMoneyInput());
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
+            return getLottoMoney();
         }
-        return getLottoMoney();
     }
 
     private WinningLotto getWinningLotto(Lotto winningLottoNumbers) {

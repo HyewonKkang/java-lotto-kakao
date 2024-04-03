@@ -5,6 +5,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class LottoBall implements Comparable<LottoBall> {
+
+    public static final int LOTTO_UPPER_BOUND = 45;
+    public static final int LOTTO_LOWER_BOUND = 1;
+
     private final int lottoBall;
 
     public LottoBall(int lottoBall) {
@@ -19,7 +23,7 @@ public class LottoBall implements Comparable<LottoBall> {
     }
 
     private void validateLottoBall(int lottoBall) {
-        if (lottoBall < 1 || lottoBall > 45) {
+        if (lottoBall < LOTTO_LOWER_BOUND || lottoBall > LOTTO_UPPER_BOUND) {
             throw new IllegalArgumentException("로또 번호는 1부터 45 까지여야 합니다.");
         }
     }
