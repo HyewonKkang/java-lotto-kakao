@@ -2,13 +2,17 @@ package domain;
 
 import java.util.List;
 
-import domain.Lotto;
-
 public class Lottos {
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
+    }
+
+    public WinningResult calculateWinningResult(WinningLotto winningLotto) {
+        WinningResult result = new WinningResult();
+        lottos.forEach(lotto -> result.add(winningLotto.getRank(lotto)));
+        return result;
     }
 
     public int getLottoCount() {

@@ -51,6 +51,6 @@ public class WinningResultTest {
         WinningLotto testWinningLotto = new WinningLotto(winnigLotto, new LottoBall(10));
 
         // 결과 계산
-        return WinningResult.of(testWinningLotto, testLottos);
+        return testLottos.calculateWinningResult(testWinningLotto);
     }
 }

@@ -28,7 +28,7 @@ public class LottoGameController {
         lottoGameView.printPurchasedLottos(lottos);
         Lotto winningLottoNumbers = getWinningLottoNumbers();
         WinningLotto winningLotto = getWinningLotto(winningLottoNumbers);
-        WinningResult winningResult = WinningResult.of(winningLotto, lottos);
+        WinningResult winningResult = lottos.calculateWinningResult(winningLotto);
 
         lottoGameView.printWinningRank(winningResult);
         lottoGameView.printEarningRate(EarningRate.of(lottoMoney, winningResult.getWinningMoney()));
