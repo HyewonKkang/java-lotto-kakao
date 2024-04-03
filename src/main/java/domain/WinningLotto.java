@@ -19,14 +19,7 @@ public class WinningLotto {
     }
 
     public Rank getRank(Lotto lotto) {
-        int matchNumberCount = countSameNumber(lotto);
-        if (matchNumberCount != 5) {
-            return Rank.findByMatchNumberCount(matchNumberCount);
-        }
-        if (hasBonusNumber(lotto)) {
-            return Rank.MATCH_FIVE_WITH_BONUS;
-        }
-        return Rank.MATCH_FIVE;
+        return Rank.findRank(countSameNumber(lotto), hasBonusNumber(lotto));
     }
 
     private int countSameNumber(Lotto lotto) {

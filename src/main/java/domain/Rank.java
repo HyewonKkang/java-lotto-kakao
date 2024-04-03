@@ -22,13 +22,13 @@ public enum Rank {
         return winningMoney;
     }
 
-    public static Rank findByMatchNumberCount(int matchNumberCount) {
+    public static Rank findRank(int matchNumberCount, boolean hasBonusNumber) {
         if (matchNumberCount == 5) {
-            throw new IllegalArgumentException("추가 정보가 필요합니다.");
+            return hasBonusNumber ? Rank.MATCH_FIVE_WITH_BONUS : Rank.MATCH_FIVE;
         }
         return Arrays.stream(Rank.values())
-            .filter(rank -> rank.matchNumberCount == matchNumberCount)
-            .findFirst()
-            .orElse(Rank.LOSE);
+                .filter(rank -> rank.matchNumberCount == matchNumberCount)
+                .findFirst()
+                .orElse(Rank.LOSE);
     }
 }
