@@ -17,7 +17,6 @@ public class LottoBall implements Comparable<LottoBall> {
             .collect(Collectors.toUnmodifiableList());
 
     public LottoBall(int lottoBall) {
-        validateLottoBall(lottoBall);
         this.lottoBall = lottoBall;
     }
 
