@@ -25,9 +25,9 @@ public class WinningLottoTest {
         Lotto winnigLotto = LottoBall.toLotto(1, 2, 3, 7, 8, 9);
         WinningLotto testWinningLotto = new WinningLotto(winnigLotto, new LottoBall(10));
 
-        WinningMoney winningMoney = testWinningLotto.getResultAmount(testLotto);
+        Rank rank = testWinningLotto.getRank(testLotto);
 
-        assertThat(winningMoney.getMoney()).isEqualTo(WinningMoney.MATCH_THREE);
+        assertThat(rank.getWinningMoney().getMoney()).isEqualTo(WinningMoney.MATCH_THREE);
     }
 
     @Test
@@ -37,9 +37,9 @@ public class WinningLottoTest {
         Lotto winnigLotto = LottoBall.toLotto(1, 2, 3, 4, 8, 9);
         WinningLotto testWinningLotto = new WinningLotto(winnigLotto, new LottoBall(10));
 
-        WinningMoney winningMoney = testWinningLotto.getResultAmount(testLotto);
+        Rank rank = testWinningLotto.getRank(testLotto);
 
-        assertThat(winningMoney.getMoney()).isEqualTo(WinningMoney.MATCH_FOUR);
+        assertThat(rank.getWinningMoney().getMoney()).isEqualTo(WinningMoney.MATCH_FOUR);
     }
 
     @Test
@@ -49,9 +49,9 @@ public class WinningLottoTest {
         Lotto winnigLotto = LottoBall.toLotto(1, 2, 3, 4, 5, 9);
         WinningLotto testWinningLotto = new WinningLotto(winnigLotto, new LottoBall(10));
 
-        WinningMoney winningMoney = testWinningLotto.getResultAmount(testLotto);
+        Rank rank = testWinningLotto.getRank(testLotto);
 
-        assertThat(winningMoney.getMoney()).isEqualTo(WinningMoney.MATCH_FIVE);
+        assertThat(rank.getWinningMoney().getMoney()).isEqualTo(WinningMoney.MATCH_FIVE);
     }
 
     @Test
@@ -61,9 +61,9 @@ public class WinningLottoTest {
         Lotto winnigLotto = LottoBall.toLotto(1, 2, 3, 4, 5, 9);
         WinningLotto testWinningLotto = new WinningLotto(winnigLotto, new LottoBall(6));
 
-        WinningMoney winningMoney = testWinningLotto.getResultAmount(testLotto);
+        Rank rank = testWinningLotto.getRank(testLotto);
 
-        assertThat(winningMoney.getMoney()).isEqualTo(WinningMoney.MATCH_FIVE_WITH_BONUS);
+        assertThat(rank.getWinningMoney().getMoney()).isEqualTo(WinningMoney.MATCH_FIVE_WITH_BONUS);
     }
 
     @Test
@@ -73,8 +73,8 @@ public class WinningLottoTest {
         Lotto winnigLotto = LottoBall.toLotto(1, 2, 3, 4, 5, 6);
         WinningLotto testWinningLotto = new WinningLotto(winnigLotto, new LottoBall(10));
 
-        WinningMoney winningMoney = testWinningLotto.getResultAmount(testLotto);
+        Rank rank = testWinningLotto.getRank(testLotto);
 
-        assertThat(winningMoney.getMoney()).isEqualTo(WinningMoney.MATCH_SIX);
+        assertThat(rank.getWinningMoney().getMoney()).isEqualTo(WinningMoney.MATCH_SIX);
     }
 }

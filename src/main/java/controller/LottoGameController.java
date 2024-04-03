@@ -2,7 +2,6 @@ package controller;
 
 import java.util.List;
 
-import domain.EarningRate;
 import domain.Lotto;
 import domain.LottoBall;
 import domain.LottoGenerator;
@@ -31,7 +30,7 @@ public class LottoGameController {
         WinningResult winningResult = lottos.calculateWinningResult(winningLotto);
 
         lottoGameView.printWinningRank(winningResult);
-        lottoGameView.printEarningRate(EarningRate.of(lottoMoney, winningResult.getWinningMoney()));
+        lottoGameView.printEarningRate(winningResult.calculateEarningRate(lottoMoney));
     }
 
     private LottoMoney getLottoMoney() {

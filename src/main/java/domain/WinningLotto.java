@@ -14,10 +14,6 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public WinningMoney getResultAmount(Lotto lotto) {
-        return getRank(lotto).getWinningMoney();
-    }
-
     public Rank getRank(Lotto lotto) {
         return Rank.findRank(countSameNumber(lotto), hasBonusNumber(lotto));
     }

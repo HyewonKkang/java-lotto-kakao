@@ -17,7 +17,7 @@ public class WinningMoney {
     }
 
     public void addWinningMoney(WinningMoney winningMoney) {
-        this.money += winningMoney.getMoney();
+        this.money += winningMoney.money;
     }
 
     @Override
