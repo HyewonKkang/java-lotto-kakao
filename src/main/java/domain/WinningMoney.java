@@ -10,14 +10,14 @@ public class WinningMoney {
     public static final long MATCH_FIVE_WITH_BONUS = 30_000_000;
     public static final long MATCH_SIX = 2_000_000_000;
 
-    private long money;
+    private final long money;
 
     public WinningMoney(long money) {
         this.money = money;
     }
 
-    public void addWinningMoney(WinningMoney winningMoney) {
-        this.money += winningMoney.money;
+    public WinningMoney addWinningMoney(WinningMoney winningMoney) {
+        return new WinningMoney(this.money + winningMoney.money);
     }
 
     @Override

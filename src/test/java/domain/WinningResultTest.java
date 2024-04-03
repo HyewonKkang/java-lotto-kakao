@@ -30,12 +30,12 @@ public class WinningResultTest {
         // when : 당첨 통계(각 당첨 개수, 상금)를 계산한다.
         WinningResult result = generateTestWinningResult();
 
-        WinningMoney resultMoney = new WinningMoney(WinningMoney.ZERO);
-        resultMoney.addWinningMoney(new WinningMoney(WinningMoney.MATCH_FOUR));
-        resultMoney.addWinningMoney(new WinningMoney(WinningMoney.MATCH_FIVE_WITH_BONUS));
-        resultMoney.addWinningMoney(new WinningMoney(WinningMoney.MATCH_SIX));
+        WinningMoney expectedMoney = new WinningMoney(WinningMoney.ZERO)
+                .addWinningMoney(new WinningMoney(WinningMoney.MATCH_FOUR))
+                .addWinningMoney(new WinningMoney(WinningMoney.MATCH_FIVE_WITH_BONUS))
+                .addWinningMoney(new WinningMoney(WinningMoney.MATCH_SIX));
 
-        assertThat(result.getWinningMoney()).isEqualTo(resultMoney);
+        assertThat(result.getWinningMoney()).isEqualTo(expectedMoney);
     }
 
     private WinningResult generateTestWinningResult() {

@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class WinningResult {
     private final Map<Rank, Integer> winningResult;
-    private final WinningMoney winningMoney;
+    private WinningMoney winningMoney;
 
     public WinningResult() {
         winningResult = new HashMap<>();
@@ -16,7 +16,7 @@ public class WinningResult {
 
     public void add(Rank rank) {
         this.winningResult.put(rank, getWinningCount(rank) + 1);
-        this.winningMoney.addWinningMoney(rank.getWinningMoney());
+        this.winningMoney = this.winningMoney.addWinningMoney(rank.getWinningMoney());
     }
 
     public EarningRate calculateEarningRate(LottoMoney lottoMoney) {
