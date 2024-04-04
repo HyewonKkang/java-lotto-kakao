@@ -31,20 +31,14 @@ public class LottoGameView {
         System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
         return IntStream.range(0, count)
             .mapToObj(i -> sc.nextLine())
-            .map(numbers -> Arrays.stream(numbers.split(LOTTO_SEPARATOR))
-                .map(Integer::parseInt)
-                .map(LottoBall::valueOf)
-                .collect(Collectors.toList()))
-            .map(Lotto::new)
+            .map(numbers -> numbers.split(LOTTO_SEPARATOR))
+                    .map(Lotto::parseLotto)
             .collect(Collectors.toList());
     }
 
-    public List<LottoBall> getWinningLottoNumbers() {
+    public Lotto getWinningLottoNumbers() {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
-        return Arrays.stream(sc.nextLine().split(LOTTO_SEPARATOR))
-            .map(Integer::parseInt)
-            .map(LottoBall::valueOf)
-            .collect(Collectors.toList());
+        return Lotto.parseLotto(sc.nextLine().split(LOTTO_SEPARATOR));
     }
 
     public int getBonusNumber() {

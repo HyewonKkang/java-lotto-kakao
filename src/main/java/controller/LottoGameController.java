@@ -61,8 +61,7 @@ public class LottoGameController {
 
     private Lotto getWinningLottoNumbers() {
         try {
-            List<LottoBall> winningLottos = lottoGameView.getWinningLottoNumbers();
-            return new Lotto(winningLottos);
+            return lottoGameView.getWinningLottoNumbers();
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] \", \"로 구분되는 숫자를 입력해주세요!");
             return getWinningLottoNumbers();
