@@ -15,6 +15,10 @@ public class Lottos {
         return result;
     }
 
+    public void add(List<Lotto> addedLottos) {
+        this.lottos.addAll(0, addedLottos);
+    }
+
     public int getLottoCount() {
         return lottos.size();
     }

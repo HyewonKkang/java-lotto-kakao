@@ -22,9 +22,16 @@ public class LottoGameController {
 
     public void play() {
         LottoMoney lottoMoney = getLottoMoney();
-        Lottos lottos = lottoGenerator.generateLottos(lottoMoney.calculateLottoCount());
+        int lottoCount = lottoMoney.calculateLottoCount();
+        int manualCount = getManualLottoCount(lottoCount);
+        Lottos lottos = lottoGenerator.generateLottos(lottoCount - manualCount);
 
-        lottoGameView.printPurchasedLottos(lottos);
+        if (manualCount > 0) {
+            List<Lotto> manualLottos = getManualLottoNumbers(manualCount);
+            lottos.add(manualLottos);
+        }
+
+        lottoGameView.printPurchasedLottos(manualCount, lottos);
         Lotto winningLottoNumbers = getWinningLottoNumbers();
         WinningLotto winningLotto = getWinningLotto(winningLottoNumbers);
         WinningResult winningResult = lottos.calculateWinningResult(winningLotto);
@@ -62,6 +69,37 @@ public class LottoGameController {
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
             return getWinningLottoNumbers();
+        }
+    }
+
+    private int getManualLottoCount(int maxLottoCount) {
+        try {
+            int manualCount = lottoGameView.getManualLottoCount();
+            if (manualCount > maxLottoCount) {
+                System.out.print("[ERROR] 수동으로 구매할 로또 수는 총 로또 수보다 작아야 합니다!");
+                return getManualLottoCount(maxLottoCount);
+            }
+            return manualCount;
+        } catch (NumberFormatException e) {
+            System.out.print("[ERROR] 숫자를 입력해주세요.");
+            return getManualLottoCount(maxLottoCount);
+        }
+    }
+
+    private List<Lotto> getManualLottoNumbers(int count) {
+        try {
+            List<Lotto> manualLottos =  lottoGameView.getManualLottos(count);
+            if (manualLottos.size() != count) {
+                System.out.println("[ERROR] " + count + "개의 로또 번호를 입력해주세요!");
+                return getManualLottoNumbers(count);
+            }
+            return manualLottos;
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] \", \"로 구분되는 숫자를 입력해주세요!");
+            return getManualLottoNumbers(count);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return getManualLottoNumbers(count);
         }
     }
 }
