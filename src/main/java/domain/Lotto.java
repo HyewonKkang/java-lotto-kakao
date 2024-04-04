@@ -18,10 +18,6 @@ public class Lotto {
         this.lottoNumbers = lottoNumbers;
     }
 
-    public List<LottoBall> getLottoNumbers() {
-        return lottoNumbers;
-    }
-
     public boolean contains(LottoBall lottoNumber) {
         return lottoNumbers.contains(lottoNumber);
     }
@@ -38,5 +34,13 @@ public class Lotto {
         if (lottoNumbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException("로또 번호는 6개로 이뤄져야 합니다!");
         }
+    }
+
+    public int getMatchCount(Lotto compareLotto) {
+        return (int) lottoNumbers.stream().filter(compareLotto::contains).count();
+    }
+
+    public List<LottoBall> getLottoNumbers() {
+        return lottoNumbers;
     }
 }
