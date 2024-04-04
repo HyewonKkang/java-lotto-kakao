@@ -22,7 +22,16 @@ public class LottoGameController {
 
     public void play() {
         LottoMoney lottoMoney = getLottoMoney();
-        int lottoCount = lottoMoney.calculateLottoCount();
+        Lottos lottos = purchaseLottos(lottoMoney);
+        Lotto winningLottoNumbers = getWinningLottoNumbers();
+        WinningLotto winningLotto = getWinningLotto(winningLottoNumbers);
+
+        WinningResult winningResult = lottos.calculateWinningResult(winningLotto);
+        printResult(winningResult, lottoMoney);
+    }
+
+    private Lottos purchaseLottos(LottoMoney paid) {
+        int lottoCount = paid.calculateLottoCount();
         int manualCount = getManualLottoCount(lottoCount);
         Lottos lottos = lottoGenerator.generateLottos(lottoCount - manualCount);
 
@@ -30,12 +39,11 @@ public class LottoGameController {
             List<Lotto> manualLottos = getManualLottoNumbers(manualCount);
             lottos.add(manualLottos);
         }
-
         lottoGameView.printPurchasedLottos(manualCount, lottos);
-        Lotto winningLottoNumbers = getWinningLottoNumbers();
-        WinningLotto winningLotto = getWinningLotto(winningLottoNumbers);
-        WinningResult winningResult = lottos.calculateWinningResult(winningLotto);
+        return lottos;
+    }
 
+    private void printResult(WinningResult winningResult, LottoMoney lottoMoney) {
         lottoGameView.printWinningRank(winningResult);
         lottoGameView.printEarningRate(winningResult.calculateEarningRate(lottoMoney));
     }
