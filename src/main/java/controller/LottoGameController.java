@@ -94,7 +94,7 @@ public class LottoGameController {
 
     private <T> T requestInput(Supplier<T> inputSupplier) {
         try {
-            return inputSupplier.get(); // 입력을 받아 검증하는 로직
+            return inputSupplier.get();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
             return requestNumberInput(inputSupplier, e.getMessage());
@@ -103,7 +103,7 @@ public class LottoGameController {
 
     private <T> T requestNumberInput(Supplier<T> inputSupplier, String errorMessage) {
         try {
-            return inputSupplier.get(); // 입력을 받아 검증하는 로직
+            return inputSupplier.get();
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] " + errorMessage);
             return requestNumberInput(inputSupplier, errorMessage);
