@@ -67,21 +67,29 @@ public class LottoGameController {
     private int getManualLottoCount(int maxLottoCount) {
         return requestNumberInput(() -> {
             int manualCount = lottoGameView.getManualLottoCount();
-            if (manualCount > maxLottoCount) {
-                throw new IllegalArgumentException("수동으로 구매할 로또 수는 총 로또 수보다 작아야 합니다.");
-            }
+            validateManualLottoCount(manualCount, maxLottoCount);
             return manualCount;
         }, "숫자를 입력해주세요.");
+    }
+
+    private void validateManualLottoCount(int manualCount, int maxLottoCount) {
+        if (manualCount > maxLottoCount) {
+            throw new IllegalArgumentException("수동으로 구매할 로또 수는 총 로또 수보다 작아야 합니다.");
+        }
     }
 
     private List<Lotto> getManualLottoNumbers(int count) {
         return requestNumberInput(() -> {
             List<Lotto> manualLottos =  lottoGameView.getManualLottos(count);
-            if (manualLottos.size() != count) {
-                throw new IllegalArgumentException(count + "개의 로또 번호를 입력해주세요.");
-            }
+            validateManualLottoNumbers(manualLottos, count);
             return manualLottos;
         }, "\", \"로 구분되는 숫자를 입력해주세요.");
+    }
+
+    private void validateManualLottoNumbers(List<Lotto> manualLottos, int count) {
+        if (manualLottos.size() != count) {
+            throw new IllegalArgumentException(count + "개의 로또 번호를 입력해주세요.");
+        }
     }
 
     private <T> T requestInput(Supplier<T> inputSupplier) {
