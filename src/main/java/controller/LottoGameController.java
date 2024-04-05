@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import domain.Lotto;
 import domain.LottoBall;
@@ -49,69 +50,58 @@ public class LottoGameController {
     }
 
     private LottoMoney getLottoMoney() {
-        try {
-            int money = lottoGameView.getLottoMoneyInput();
-            if (money < 1000) {
-                throw new IllegalArgumentException("돈은 1000원 이상이어야 합니다.");
-            }
-            return new LottoMoney(money);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
-            return getLottoMoney();
-        }
+        return requestInput(() -> new LottoMoney(lottoGameView.getLottoMoneyInput()));
     }
 
     private WinningLotto getWinningLotto(Lotto winningLottoNumbers) {
-        try {
+        return requestNumberInput(() -> {
             LottoBall bonusNumber = new LottoBall(lottoGameView.getBonusNumber());
             return new WinningLotto(winningLottoNumbers, bonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
-            return getWinningLotto(winningLottoNumbers);
-        }
+        }, "숫자를 입력해주세요");
     }
 
     private Lotto getWinningLottoNumbers() {
-        try {
-            return lottoGameView.getWinningLottoNumbers();
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] \", \"로 구분되는 숫자를 입력해주세요.");
-            return getWinningLottoNumbers();
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
-            return getWinningLottoNumbers();
-        }
+        return requestNumberInput(lottoGameView::getWinningLottoNumbers, "\", \"로 구분되는 숫자를 입력해주세요.");
     }
 
     private int getManualLottoCount(int maxLottoCount) {
-        try {
+        return requestNumberInput(() -> {
             int manualCount = lottoGameView.getManualLottoCount();
             if (manualCount > maxLottoCount) {
                 throw new IllegalArgumentException("수동으로 구매할 로또 수는 총 로또 수보다 작아야 합니다.");
             }
             return manualCount;
-        } catch (NumberFormatException e) {
-            System.out.print("[ERROR] 숫자를 입력해주세요.");
-            return getManualLottoCount(maxLottoCount);
-        } catch (IllegalArgumentException e) {
-            System.out.print("[ERROR] " + e.getMessage());
-            return getManualLottoCount(maxLottoCount);
-        }
+        }, "숫자를 입력해주세요.");
     }
 
     private List<Lotto> getManualLottoNumbers(int count) {
-        try {
+        return requestNumberInput(() -> {
             List<Lotto> manualLottos =  lottoGameView.getManualLottos(count);
             if (manualLottos.size() != count) {
                 throw new IllegalArgumentException(count + "개의 로또 번호를 입력해주세요.");
             }
             return manualLottos;
-        } catch (NumberFormatException e) {
-            System.out.print("[ERROR] \", \"로 구분되는 숫자를 입력해주세요.");
-            return getManualLottoNumbers(count);
+        }, "\", \"로 구분되는 숫자를 입력해주세요.");
+    }
+
+    private <T> T requestInput(Supplier<T> inputSupplier) {
+        try {
+            return inputSupplier.get(); // 입력을 받아 검증하는 로직
         } catch (IllegalArgumentException e) {
-            System.out.print("[ERROR] " + e.getMessage());
-            return getManualLottoNumbers(count);
+            System.out.println("[ERROR] " + e.getMessage());
+            return requestNumberInput(inputSupplier, e.getMessage());
+        }
+    }
+
+    private <T> T requestNumberInput(Supplier<T> inputSupplier, String errorMessage) {
+        try {
+            return inputSupplier.get(); // 입력을 받아 검증하는 로직
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] " + errorMessage);
+            return requestNumberInput(inputSupplier, errorMessage);
+        }  catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return requestNumberInput(inputSupplier, errorMessage);
         }
     }
 }

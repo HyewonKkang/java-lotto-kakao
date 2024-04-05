@@ -16,7 +16,7 @@ public class Lottos {
     }
 
     public void add(List<Lotto> addedLottos) {
-        this.lottos.addAll(0, addedLottos);
+        this.lottos.addAll(addedLottos);
     }
 
     public int getLottoCount() {
