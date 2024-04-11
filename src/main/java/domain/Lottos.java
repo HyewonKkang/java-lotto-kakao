@@ -15,8 +15,8 @@ public class Lottos {
         return result;
     }
 
-    public void add(List<Lotto> addedLottos) {
-        this.lottos.addAll(addedLottos);
+    public void merge(Lottos addedLottos) {
+        lottos.addAll(addedLottos.lottos);
     }
 
     public int getLottoCount() {
